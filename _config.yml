@@ -32,6 +32,8 @@ github_username:  bela333
 theme: minima
 plugins:
   - jekyll-feed
+  - jekyll-toc
+  - jekyll-katex
 
 # Exclude from processing.
 # The following items will not be processed, by default.
