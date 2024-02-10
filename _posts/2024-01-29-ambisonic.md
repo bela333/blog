@@ -61,29 +61,75 @@ We call this recording method **first-order ambisonics**.
 
 First-order ambisonics captures directionality of sounds *reasonably well*. If you need more accuracy, you would need higher-order ambisonics, that use more channels, for more accuracy.
 
-YouTube only supports first-order ambisonics, while Facebook supports some higher-order ones as well.
+YouTube only supports first-order ambisonics, while Facebook supports some higher-order ones as well. <!--Look up what those higher order ones are-->
 
 ## What do I need?
 
-This guide is made for Windows.
+I made this guide for Windows. If you are a Linux user, you know what to do. If you are a MacOS user... maybe some other time.
 
 - [Minecraft](https://www.minecraft.net/) (duh)
 - [Replay Mod](https://www.replaymod.com/) (DUH)
 - [Fabric Mod Loader](https://fabricmc.net/) (DUH????)
-- [OpenAL Soft Configuration](https://www.openal-soft.org/openal-binaries/openal-soft-1.23.1-bin.zip) (oh....)
+- [OpenAL Soft Configuration](https://www.openal-soft.org/#download) (oh....)
 - [DaVinci Resolve](https://www.blackmagicdesign.com/products/davinciresolve) or any video editor that can handle multiple audio channels
 - [IEM Plug-in Suite](https://plugins.iem.at/)
+- [360 Video Metadata Tool](https://github.com/google/spatial-media/releases)
 
 ## Setting up OpenAL
 
+<!--
 
+openal soft config: openal-soft-1.23.1-bin\alsoft-config\alsoft-config.exe
+config place: %appdata%\alsoft.ini
+
+Playback:
+    Channels: "Ambisonic, 1st Order"
+    Ambisonic format: AmbiX (ACN, SN3D)
+
+Backends:
+    General:
+        Priority Backends:
+            Add Wave Writer
+    Wave Writer:
+        Output file
+
+Apply automatically places file where it should be
+
+Order: WXYZ
+YouTube order: WYZX
+
+-->
 
 ## Recording audio
 
+<!-- Just record lmao -->
 
+
+## Setting up IEM
+
+<!-- C:\Program Files\VSTPlugins -->
 
 ## Editing ambisonics
 
+<!--
 
+Set Clip attributes:
+Adaptive 4
+Embedded channel 1
+Embedded channel 3
+Embedded channel 4  
+Embedded channel 2
+
+TODO: More research if this order is correct
+
+Set Bus Format to LCRS
+
+Render with Linear PCM audio from Bus 1
+
+-->
+
+## Injecting metadata
+
+<!-- 360° video + ambisonics -->
 
 ## How about on Facebook?
