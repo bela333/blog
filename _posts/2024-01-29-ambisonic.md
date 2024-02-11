@@ -48,7 +48,7 @@ R = \frac{M - S}2
 
 With [just](https://www.todepond.com/wikiblogarden/better-computing/just/) a bit of mathematics you can turn these signals back into our usual **Left** and **Right** channels.
 
-But what if, instead of only recording the difference between the Left and the Right side, we also record the difference for all 3 axis?
+But what if, instead of only recording the difference between the Left and the Right side, we also record the difference for all 3 axes?
 
 This way, we get 4 audio channels:
 
