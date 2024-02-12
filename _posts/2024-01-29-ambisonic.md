@@ -100,10 +100,38 @@ YouTube order: WYZX
 
 -->
 
+In order to record Ambisonic audio, we need to configure OpenAL, the audio library that Minecraft uses.
+
+The easiest way to do this is to use the OpenAL Soft configurator. Download the [latest OpenAL Soft release](https://www.openal-soft.org/#download). Open `alsoft-config\alsoft-config.exe`.
+
+On the `Playback` page set the following options:
+
+- `Channels`: Ambisonic, 1st order
+- `Ambisonic Format`: AmbiX (ACN, SN3D)
+
+Now, we are going to configure so that the game automatically records the game sounds into a `.wav` file.
+
+Go to the `Backends` page, and
+- In `General` right-click on Priority Backends, and "Add Wave Writer"
+- In `Wave Writer` change the `Output File` field to the desired location.
+
+Now, click `Apply`.
+
+From now on, any OpenAL based game or application you start will output its audio into this file. For this reason, you should avoid doing anything other than running Minecraft while this configuration is applied.
+
 ## Recording audio
 
-<!-- Just record lmao -->
+If you managed to set up your configuration, start Minecraft. You would find, that the game does not make any sound. If this is the case, **Congratulations**! You managed to change your OpenAL config! Your game audio should now be recorded in the specified `.wav` file.
 
+I recommend only using the configuration when you are ready to record your audio. You can reset your configuration by going to `%appdata%` and deleting the `alsoft.ini` file.
+
+In your replay, make sure all your keyframes look in the same direction. Because of this, you probably shouldn't use the `Stabilize Camera` option during rendering.
+
+Now, save your keyframes and render your replay as a panorama, as you normally would.
+
+Apply the settings in `OpenAL Soft Configurator` as you did before, and restart Minecraft. Open the Replay you rendered before and play back the same Camera Path you used before.
+
+Once it has finished, close the game and rename the output file to something different than what it was before (to save it from being overwritten).
 
 ## Setting up IEM
 
