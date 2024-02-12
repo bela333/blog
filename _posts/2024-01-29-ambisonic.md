@@ -137,6 +137,8 @@ Once it has finished, close the game and rename the output file to something dif
 
 <!-- C:\Program Files\VSTPlugins -->
 
+TODO: Is this even necessary???
+
 ## Editing ambisonics
 
 <!--
