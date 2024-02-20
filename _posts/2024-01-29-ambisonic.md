@@ -198,7 +198,7 @@ Render with Linear PCM audio from Bus 1
 
 ## Exporting and injecting metadata
 
-Go to the Export that at the bottom.
+Go to the Export tab at the bottom.
 
 <!--TODO-->
 
