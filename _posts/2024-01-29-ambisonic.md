@@ -5,6 +5,11 @@ title: Surround sound using the Replay Mod
 toc: true
 ---
 
+<!-- TODO:
+- [ ] Add pictures
+- [ ] Add sample files for easy testing
+-->
+
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/katex.min.css" integrity="sha384-zB1R0rpPzHqg7Kpt0Aljp8JPLqbXI3bhnPWROx27a9N0Ll6ZP/+DiW/UqRcLbRjq" crossorigin="anonymous">
 
 <iframe width="560" height="315" src="https://www.youtube.com/embed/tgI0obs8GDE?si=1eANunMTy9lZUo2Z" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
@@ -72,7 +77,6 @@ I made this guide for Windows. If you are a Linux user, you know what to do. If 
 - [Fabric Mod Loader](https://fabricmc.net/) (DUH????)
 - [OpenAL Soft Configuration](https://www.openal-soft.org/#download) (oh....)
 - [DaVinci Resolve](https://www.blackmagicdesign.com/products/davinciresolve) or any video editor that can handle multiple audio channels
-- [IEM Plug-in Suite](https://plugins.iem.at/)
 - [360 Video Metadata Tool](https://github.com/google/spatial-media/releases)
 
 ## Setting up OpenAL
@@ -100,7 +104,7 @@ YouTube order: WYZX
 
 -->
 
-In order to record Ambisonic audio, we need to configure OpenAL, the audio library that Minecraft uses.
+To record Ambisonic audio, we need to configure OpenAL, the audio library that Minecraft uses.
 
 The easiest way to do this is to use the OpenAL Soft configurator. Download the [latest OpenAL Soft release](https://www.openal-soft.org/#download). Open `alsoft-config\alsoft-config.exe`.
 
@@ -129,17 +133,44 @@ In your replay, make sure all your keyframes look in the same direction. Because
 
 Now, save your keyframes and render your replay as a panorama, as you normally would.
 
-Apply the settings in `OpenAL Soft Configurator` as you did before, and restart Minecraft. Open the Replay you rendered before and play back the same Camera Path you used before.
+Nexr, apply the settings in `OpenAL Soft Configurator` as we did before, and restart Minecraft. Open the Replay you rendered before and play back the same Camera Path you used before.
 
-Once it has finished, close the game and rename the output file to something different than what it was before (to save it from being overwritten).
-
-## Setting up IEM
-
-<!-- C:\Program Files\VSTPlugins -->
-
-TODO: Is this even necessary???
+Once it has finished, close the game and rename the output file to something different than what it was before (otherwise it might get overwritten).
 
 ## Editing ambisonics
+
+Next, we have to combine the audio and our rendered 360° video. For this, we are going to use DaVinci Resolve, since it is free and supports multichannel audio.
+
+First, import the audio file. The default channel order that OpenAL outputs does not conform to the standard that YouTube and most other websites use. Because of this, we need to rearrange them.
+
+- Right click on your sound file, and click `Clip attributes...`.
+- Go to the Audio tab
+- Here, you should see the 4 audio channels, in an `Adaptive 4` format.
+- In the `Source Channel` column, change the settings to the following, in order: <!--TODO: REALLY, REALLY make sure this is right-->
+  - `Embedded Channel 1`
+  - `Embedded Channel 3`
+  - `Embedded Channel 4`
+  - `Embedded Channel 2`
+- Click `OK`
+
+Now, you should have the audio imported correctly. Import the video as well, and create a new timeline with the video and the audio.
+
+You might find, that the video does not quite fill the screen. This might be, because of Resolve's default project resolution. You can change the resolution in `File > Project Settings`.
+
+Depending on how you made the timeline, you might have to change the track of your ambisonic audio to be in Adaptive 4 format as well. Next to the name of your audio track, you should either see `2.0` or `(4)`. If you see `2.0`, then:
+- Right click on the track
+- Hit `Change Track Type To`
+- Hit `Adaptive`
+- Set it to `4`
+
+You also have to make sure that the whole project is in a 4 channel format. For this:
+- Click on the `Fairlight` menu at the top
+- Hit `Bus Format`
+- Change `Bus 1` to `LCRS`
+
+
+
+At this point, you are ready to export the video.
 
 <!--
 
@@ -151,15 +182,33 @@ Embedded channel 4
 Embedded channel 2
 
 TODO: More research if this order is correct
+    2024-12-20: I don't have have headphones with meself
 
 Set Bus Format to LCRS
+- Fairlight -> Bus Format -> Change `Bus 1` to LCRS
+
+Make sure the track your audio is in, is Adaptive 4
+- If you create the track by drag-and-dropping in the audio, it will be Adaptive 4 by default
+- Otherwise you have to set the it to Adaptive 4
+  - Right click -> Change Track Type to -> Adaptive -> 4
 
 Render with Linear PCM audio from Bus 1
 
 -->
 
-## Injecting metadata
+## Exporting and injecting metadata
 
-<!-- 360° video + ambisonics -->
+Go to the Export that at the bottom.
 
-## How about on Facebook?
+<!--TODO-->
+
+## Tips and Tricks
+
+<!--
+- IEM software suite
+  - Adding directional sounds to the video
+- Facebook ambisonics
+- Head locked audio
+- Energy visualizer
+- The SPARTA suite? (might be another article)
+-->
